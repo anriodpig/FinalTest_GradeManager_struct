@@ -18,8 +18,7 @@ struct JILU
 {
 	float average[6];
 	float total[6];
-}kecheng;
-
+} kecheng;
 
 int records = 1;
 int existed = 0;
@@ -30,7 +29,7 @@ void menu();
 void biaotou(int kechengshu);
 int shuru(int kechengshu);
 int shuchu(int kechengshu);
-void shuchuhang(int kechengshu,int col);
+void shuchuhang(int kechengshu, int col);
 int calc_1(int kechengshu);
 int calc_2(int kechengshu);
 void jiaohuan(int col);
@@ -39,11 +38,12 @@ void rank_xuehao();
 void rank_mingzi();
 int sousuoxuehao(int xuehao);
 int sousuoxingming(char a[]);
+void tongji(int kechengshu);
 
 int main()
 {
 	int kechengshu = 0;
-	int a,i,j;
+	int a, i, j;
 	char n[15];
 	do
 	{
@@ -110,7 +110,8 @@ int main()
 			system("pause");
 			break;
 		case 9:
-
+			tongji(kechengshu);
+			break;
 		case 10:
 			shuchu(kechengshu);
 			break;
@@ -139,22 +140,19 @@ void menu()
 
 void biaotou(int kechengshu)
 {
-	printf("  —ß∫≈  ");
-	printf("     –’√˚    ");
+	printf("  Â≠¶Âè∑  ");
+	printf("     ÂßìÂêç    ");
 	for (int i = 0; i < kechengshu; i++)
 	{
-		printf("   ≥…º®%d   ", i + 1);
+		printf(" ÊàêÁª©%d ", i + 1);
 	}
 	if (flag_c2)
 	{
-		printf("   ◊‹∑÷   ");
-		printf("   ∆Ωæ˘∑÷   ");
+		printf("   ÊÄªÂàÜ   ");
+		printf("   Âπ≥ÂùáÂàÜ   ");
 	}
 	printf("\n");
-
-
 }
-
 
 int shuru(int kechengshu)
 {
@@ -212,11 +210,11 @@ int shuchu(int kechengshu)
 
 		for (int j = 0; j < kechengshu; j++)
 		{
-			printf("  %3.2f   ", stu[i].score[j]);
+			printf(" %3.2f ", stu[i].score[j]);
 		}
 		if (flag_c2)
 		{
-			printf(" %5.2f   %5.2f  ", stu[i].total, stu[i].avg);
+			printf(" %5.2f  %5.2f ", stu[i].total, stu[i].avg);
 		}
 		printf("\n");
 	}
@@ -230,7 +228,7 @@ int calc_1(int kechengshu)
 	for (int j = 0; j < kechengshu; j++)
 	{
 		zongfen = total = 0;
-		for (int i = 1; i < records ; i++)
+		for (int i = 1; i < records; i++)
 		{
 			total = total + stu[i].score[j];
 		}
@@ -243,7 +241,6 @@ int calc_1(int kechengshu)
 	}
 	printf("\n");
 
-
 	flag_c1 = 1;
 	system("pause");
 	return 0;
@@ -251,7 +248,7 @@ int calc_1(int kechengshu)
 int calc_2(int kechengshu)
 {
 	float total;
-	for (int i = 1; i < records ; i++)
+	for (int i = 1; i < records; i++)
 	{
 		total = 0;
 		for (int j = 0; j < kechengshu; j++)
@@ -270,8 +267,8 @@ int calc_2(int kechengshu)
 void jiaohuan(int col)
 {
 	stu[30] = stu[col];
-	stu[col] = stu[col+1];
-	stu[col+1] = stu[30];
+	stu[col] = stu[col + 1];
+	stu[col + 1] = stu[30];
 }
 
 void rank_chengji(int kechengshu)
@@ -280,7 +277,7 @@ void rank_chengji(int kechengshu)
 	{
 		calc_2(kechengshu);
 	}
-	for (int i = 1; i < records ; i++)
+	for (int i = 1; i < records; i++)
 	{
 		for (int j = 1; j < (records - i); j++)
 		{
@@ -296,9 +293,9 @@ void rank_chengji(int kechengshu)
 
 void rank_xuehao()
 {
-	for (int i = 1; i < records ; i++)
+	for (int i = 1; i < records; i++)
 	{
-		for (int j = 1; j < (records  - i); j++)
+		for (int j = 1; j < (records - i); j++)
 		{
 			if (stu[j].num > stu[j + 1].num)
 			{
@@ -312,7 +309,7 @@ void rank_xuehao()
 
 void rank_mingzi()
 {
-	for (int i = 1; i < records ; i++)
+	for (int i = 1; i < records; i++)
 	{
 		for (int j = 1; j < (records - i); j++)
 		{
@@ -326,7 +323,7 @@ void rank_mingzi()
 	system("pause");
 }
 
-void shuchuhang(int kechengshu,int col)
+void shuchuhang(int kechengshu, int col)
 {
 	printf("%8d  %s ", stu[col].num, stu[col].name);
 
@@ -344,7 +341,7 @@ void shuchuhang(int kechengshu,int col)
 int sousuoxuehao(int xuehao)
 {
 	int j = 1;
-	for (int i = 1; i < records ; i++)
+	for (int i = 1; i < records; i++)
 	{
 		if (xuehao == stu[j].num)
 		{
@@ -358,7 +355,7 @@ int sousuoxuehao(int xuehao)
 int sousuoxingming(char a[])
 {
 	int i;
-	for (i = 1; i < records  ; i++)
+	for (i = 1; i < records; i++)
 	{
 		if (strcmp(a, stu[i].name) == 0)
 		{
@@ -366,4 +363,38 @@ int sousuoxingming(char a[])
 		}
 	}
 	return -1;
+}
+
+void tongji(int kechengshu)
+{
+	int a, b, c, d, e, i, j;
+	for (int i = 0; i < kechengshu; i++)
+	{
+		a = b = c = d = e = 0;
+		for (int j = 1; j < records; j++)
+		{
+			if (stu[j].score[i] <= 100 && stu[j].score[i] >= 90)
+			{
+				a++;
+			}
+			else if (stu[j].score[i] <= 89 && stu[j].score[i] >= 80)
+			{
+				b++;
+			}
+			else if (stu[j].score[i] <= 79 && stu[j].score[i] >= 70)
+			{
+				c++;
+			}
+			else if (stu[j].score[i] <= 69 && stu[j].score[i] >= 60)
+			{
+				d++;
+			}
+			else if (stu[j].score[i] <= 59 && stu[j].score[i] >= 0)
+			{
+				e++;
+			}
+		}
+		printf("Class No.%d:  A:%d/%.2f%%  B:%d/%.2f%%  C:%d/%.2f%%  D:%d/%.2f%%  E:%d/%.2f%%\n", i + 1, a, 100 * float(a) / records, b, 100 * float(b) / records, c, 100 * float(c) / records, d, 100 * float(d) / records, e, 100 * float(e) / records);
+	}
+	system("pause");
 }
